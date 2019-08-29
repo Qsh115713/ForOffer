@@ -2,7 +2,7 @@ import Data.TreeNode;
 
 import java.util.*;
 
-public class Solution {
+public class Main {
 
     public static void main(String[] args) {
         int x = 1, y = 1, c = 0;
