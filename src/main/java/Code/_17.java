@@ -3,7 +3,7 @@ package Code;
 import java.util.ArrayList;
 import java.util.List;
 
-public class T1 {
+public class _17 {
     public List<String> letterCombinations(String digits) {
         List<String> res = new ArrayList<>();
         if (digits == null || digits.equals("")) {

@@ -1,22 +1,23 @@
 package Code;
 
-import Data.ListNode;
+import java.util.Stack;
 
-import java.util.*;
-
-public class _23 {
-    public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) return null;
-        ListNode p = new ListNode(0), dump = p;
-        Queue<ListNode> q = new PriorityQueue<>(Comparator.comparingInt((ListNode o) -> o.val));
-        for (ListNode item : lists) {
-            if (item != null) q.add(item);
+public class _32 {
+    public int longestValidParentheses(String s) {
+        Stack<Integer> stack = new Stack<>();
+        int max = 0;
+        int left = -1;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '(') stack.push(i);
+            else {
+                if (stack.empty()) left = i;
+                else {
+                    stack.pop();
+                    if (stack.empty()) max = Math.max(max, i - left);
+                    else max = Math.max(max, i - stack.peek());
+                }
+            }
         }
-        while (!q.isEmpty()) {
-            p.next = q.poll();
-            p = p.next;
-            if (p.next != null) q.add(p.next);
-        }
-        return dump.next;
+        return max;
     }
 }

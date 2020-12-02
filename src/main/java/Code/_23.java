@@ -1,25 +1,22 @@
 package Code;
 
-import java.util.ArrayList;
-import java.util.List;
+import Data.ListNode;
 
-public class _22 {
-    public List<String> generateParenthesis(int n) {
-        List<String> res = new ArrayList<>();
-        helper(res, "", n, 0, 0);
-        return res;
-    }
+import java.util.*;
 
-    private void helper(List<String> res, String str, int n, int a, int b) {
-        if (a == n && b == n) {
-            res.add(str);
-            return;
+public class _23 {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) return null;
+        ListNode p = new ListNode(0), dump = p;
+        Queue<ListNode> q = new PriorityQueue<>(Comparator.comparingInt((ListNode o) -> o.val));
+        for (ListNode item : lists) {
+            if (item != null) q.add(item);
         }
-        if (a < n) {
-            helper(res, str + '(', n, a + 1, b);
+        while (!q.isEmpty()) {
+            p.next = q.poll();
+            p = p.next;
+            if (p.next != null) q.add(p.next);
         }
-        if (b < a) {
-            helper(res, str + ')', n, a, b + 1);
-        }
+        return dump.next;
     }
 }

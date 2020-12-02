@@ -1,13 +1,13 @@
 import Data.TreeNode;
 
 import java.util.*;
+import Code.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        int x = 1, y = 1, c = 0;
-        c &= x | y;
-        System.out.println(c);
+        _17 t = new _17();
+        System.out.println(t.letterCombinations("2"));
     }
 
     public boolean isValidBST2(TreeNode root) {

@@ -1,17 +1,23 @@
 package Code;
 
-import java.util.ArrayList;
+import Data.ListNode;
+
 import java.util.List;
 
-public class T2 {
-    public List<String> letterCombinations(String digits) {
-        List<String> res = new ArrayList<>();
-        if (digits == null || digits.equals("")) {
-            return res;
+public class _19 {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (n <= 0) return head;
+        ListNode dump = new ListNode(0);
+        dump.next = head;
+        ListNode pre = dump, p = dump;
+        while (p.next != null) {
+            p = p.next;
+            if (n-- <= 0) pre = pre.next;
         }
-        String[] s = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        helper(res, s, digits, 0, "");
-        return res;
+        if (n <= 0) {
+            pre.next = pre.next.next;
+        }
+        return dump.next;
     }
 
     private void helper(List<String> res, String[] s, String digits, int index, String str) {

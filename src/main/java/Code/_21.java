@@ -2,24 +2,19 @@ package Code;
 
 import Data.ListNode;
 
-import java.util.List;
-import java.util.Stack;
-
-public class _20 {
-    public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
-        for (char ch : s.toCharArray()) {
-            if (ch == '(' || ch == '[' || ch == '{') {
-                stack.push(ch);
+public class _21 {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode res = new ListNode(0), l = res;
+        while (l1 != null || l2 != null) {
+            if (l2 == null || l1 != null && l1.val < l2.val) {
+                l.next = l1;
+                l1 = l1.next;
             } else {
-                if (stack.isEmpty()) return false;
-                char tmp = stack.peek();
-                if (tmp == '(' && ch == ')' || tmp == '[' && ch == ']' || tmp == '{' && ch == '}')
-                    stack.pop();
-                else return false;
+                l.next = l2;
+                l2 = l2.next;
             }
+            l = l.next;
         }
-        return stack.isEmpty();
+        return res.next;
     }
-
 }
